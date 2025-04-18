@@ -22,6 +22,7 @@ from .views import IndexView, CustomLoginView, CustomLogoutView
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('users/', include('task_manager.users.urls')),
+    path('statuses/', include('task_manager.statuses.urls')),
     path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', CustomLogoutView.as_view(), name='logout'),
     path('admin/', admin.site.urls),
