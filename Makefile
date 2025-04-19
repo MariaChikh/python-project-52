@@ -21,3 +21,6 @@ shell:
 
 test:
 	python3 manage.py test
+
+lint:
+	uv run ruff check .

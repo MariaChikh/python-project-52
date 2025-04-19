@@ -23,6 +23,7 @@ class CustomLoginView(LoginView):
     def get_success_url(self):
         return reverse_lazy('index')
 
+
 class CustomLogoutView(LogoutView):
     def dispatch(self, request, *args, **kwargs):
         messages.info(request, _('You are logged out'))

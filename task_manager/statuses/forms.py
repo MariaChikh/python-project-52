@@ -8,9 +8,30 @@ class StatusCreationForm(forms.ModelForm):
         model = Status
         fields = ['name']
 
+        labels = {
+            'name': _('Name'),
+        }
+
         widgets = {
-            'username': forms.TextInput(attrs={
-                'placeholder': _('Username'),
+            'name': forms.TextInput(attrs={
+                'placeholder': _('Name'),
+                'class': 'form-control',
+            })
+        }
+
+
+class StatusChangeForm(forms.ModelForm):
+    class Meta:
+        model = Status
+        fields = ['name']
+
+        labels = {
+            'name': _('Name'),
+        }
+
+        widgets = {
+            'name': forms.TextInput(attrs={
+                'placeholder': _('Name'),
                 'class': 'form-control',
             })
         }
