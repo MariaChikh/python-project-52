@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-#from task_manager.tasks.models import Task
+from task_manager.tasks.models import Task
 
 
 class IndexView(LoginRequiredMixin, ListView):
@@ -54,8 +54,8 @@ class StatusDeleteView(LoginRequiredMixin, DeleteView):
 
     def form_valid(self, form):
         status = self.get_object()
-        #if status.task_set.exists():
-            #messages.error(self.request, _('Cannot delete status because it is in use'))
-            #return redirect(self.success_url)
+        if status.task_set.exists():
+            messages.error(self.request, _('Cannot delete status because it is in use'))
+            return redirect(self.success_url)
         messages.success(self.request, _('Status successfully deleted'))
         return super().form_valid(form)
