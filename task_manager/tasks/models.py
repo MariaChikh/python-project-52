@@ -8,7 +8,7 @@ class Task(models.Model):
     status = models.ForeignKey(Status, on_delete=models.PROTECT)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tasks_created')
     executor = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='tasks_assigned')
-    #labels = models.ManyToManyField('Label')
+    labels = models.ManyToManyField('labels.Label')
     created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
