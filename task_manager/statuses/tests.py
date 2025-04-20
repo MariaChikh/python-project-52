@@ -6,16 +6,15 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 class StatusTest(TestCase):
+
+    fixtures = ['users.json', 'statuses.json']
     
     def setUp(self):
-        self.user = User.objects.create_user(
-            username='testuser',
-            password='testpassword123'
-        )
-        self.status = Status.objects.create(name='teststatus')
+        self.user = User.objects.first()
+        self.status = Status.objects.first()
+        self.client.force_login(self.user)
 
     def test_create_status(self):
-        self.client.login(username='testuser', password='testpassword123')
         response = self.client.post(reverse('status_create'), {
             'name': 'Working',
         })
@@ -23,7 +22,6 @@ class StatusTest(TestCase):
         self.assertTrue(Status.objects.filter(name='Working').exists())
 
     def test_update_status(self):
-        self.client.login(username='testuser', password='testpassword123')
         response = self.client.post(reverse('status_update', kwargs={'pk': self.status.pk}),
                                             {'name': 'New Name',
                                             })
@@ -33,7 +31,6 @@ class StatusTest(TestCase):
 
 
     def test_delete_status(self):
-        self.client.login(username='testuser', password='testpassword123')
         response = self.client.post(reverse("status_delete", kwargs={'pk': self.status.pk}))
         self.assertFalse(Status.objects.filter(pk=self.status.pk).exists())
         self.assertEqual(response.status_code, 302)

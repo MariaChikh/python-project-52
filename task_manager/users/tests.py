@@ -8,6 +8,10 @@ User = get_user_model()
 class UserTest(TestCase):
     fixtures = ["users.json"]
 
+    def setUp(self):
+        self.user = User.objects.get(pk=2)
+        self.client.force_login(self.user)
+
     def test_create_user(self):
         response = self.client.post(reverse('user_create'), {
             'first_name': 'Ivan',
@@ -18,10 +22,6 @@ class UserTest(TestCase):
         })
         self.assertEqual(response.status_code, 302)
         self.assertTrue(User.objects.filter(username='ivanpetrov').exists())
-
-    def setUp(self):
-        self.user = User.objects.get(pk=2)
-        self.client.force_login(self.user)
 
     def test_update_user(self):
         user = User.objects.get(pk=2)
