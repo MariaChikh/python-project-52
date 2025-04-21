@@ -1,21 +1,26 @@
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from task_manager.tasks.models import Task
-from task_manager.tasks.forms import TaskCreationForm, TaskChangeForm
-from django.utils.translation import gettext_lazy as _
-from django.urls import reverse_lazy
-from django.shortcuts import redirect
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
+from django.views.generic import CreateView, DeleteView, UpdateView
+from django_filters.views import FilterView
+
+from task_manager.tasks.forms import TaskForm
+from task_manager.tasks.models import Task
+
+from .filter import TaskFilter
 
 
-class IndexView(LoginRequiredMixin, ListView):
+class IndexView(LoginRequiredMixin, FilterView):
     model = Task
+    filterset_class = TaskFilter
     template_name = 'tasks/index.html'
     context_object_name = 'tasks'
 
 
 class TaskCreateView(LoginRequiredMixin, CreateView):
-    form_class = TaskCreationForm
+    form_class = TaskForm
     template_name = 'tasks/create.html'
     success_url = reverse_lazy('tasks_index')
 
@@ -32,7 +37,7 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
 
 class TaskUpdateView(LoginRequiredMixin, UpdateView):
     model = Task
-    form_class = TaskChangeForm
+    form_class = TaskForm
     template_name = 'tasks/create.html'
     success_url = reverse_lazy('tasks_index')
 

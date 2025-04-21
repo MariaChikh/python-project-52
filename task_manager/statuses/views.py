@@ -1,12 +1,12 @@
 from django.contrib import messages
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from task_manager.statuses.models import Status
-from task_manager.statuses.forms import StatusCreationForm, StatusChangeForm
-from django.utils.translation import gettext_lazy as _
-from django.urls import reverse_lazy
-from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-from task_manager.tasks.models import Task
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+
+from task_manager.statuses.forms import StatusForm
+from task_manager.statuses.models import Status
 
 
 class IndexView(LoginRequiredMixin, ListView):
@@ -16,7 +16,7 @@ class IndexView(LoginRequiredMixin, ListView):
 
 
 class StatusCreateView(LoginRequiredMixin, CreateView):
-    form_class = StatusCreationForm
+    form_class = StatusForm
     template_name = 'statuses/create.html'
     success_url = reverse_lazy('statuses_index')
 
@@ -32,7 +32,7 @@ class StatusCreateView(LoginRequiredMixin, CreateView):
 
 class StatusUpdateView(LoginRequiredMixin, UpdateView):
     model = Status
-    form_class = StatusChangeForm
+    form_class = StatusForm
     template_name = 'statuses/create.html'
     success_url = reverse_lazy('statuses_index')
 

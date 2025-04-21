@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import (
-    UserCreationForm,
     UserChangeForm,
+    UserCreationForm,
 )
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
@@ -11,7 +11,7 @@ from django.utils.translation import gettext_lazy as _
 class CustomUserCreationForm(UserCreationForm):
     password1 = forms.CharField(
         label=_("Password"),
-        widget=forms.PasswordInput(attrs={'label': _('Password'),  'placeholder': _('Password'), 'class': 'form-control'}),
+        widget=forms.PasswordInput(attrs={'label': _('Password'), 'placeholder': _('Password'), 'class': 'form-control'}),
         help_text=_("Your password must contain at least 3 characters."),
     )
 
@@ -46,7 +46,7 @@ class CustomUserCreationForm(UserCreationForm):
             }),
             'last_name': forms.TextInput(attrs={
                 'placeholder': _('Last name'),
-                'class':'form-control',
+                'class': 'form-control',
             }),
         }
 

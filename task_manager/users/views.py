@@ -1,11 +1,14 @@
 from django.contrib import messages
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
-from django.shortcuts import redirect
 from django.contrib.auth.models import User
-from task_manager.users.forms import CustomUserCreationForm, CustomUserChangeForm
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
-from task_manager.tasks.models import Task
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+
+from task_manager.users.forms import (
+    CustomUserChangeForm,
+    CustomUserCreationForm,
+)
 
 
 class IndexView(ListView):
@@ -28,6 +31,7 @@ class UserCreateView(CreateView):
         messages.success(self.request, "Пользователь успешно зарегистрирован")
         return super().form_valid(form)
     
+
 class UserUpdateView(UpdateView):
     model = User
     form_class = CustomUserChangeForm
@@ -57,10 +61,6 @@ class UserDeleteView(DeleteView):
     success_url = reverse_lazy('users_index')
     context_object_name = 'user'
 
-    #def dispatch(self, request, *args, **kwargs):
-        
-        #return super().dispatch(request, *args, **kwargs)
-
     def form_valid(self, form):
         obj = self.get_object()
         if obj != self.request.user:
@@ -71,4 +71,3 @@ class UserDeleteView(DeleteView):
             return redirect(self.success_url)
         messages.success(self.request, _('User successfully deleted'))
         return super().form_valid(form)
-

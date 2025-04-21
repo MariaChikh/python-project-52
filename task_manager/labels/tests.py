@@ -1,9 +1,11 @@
-from django.test import TestCase
-from .models import Label
-from django.urls import reverse
 from django.contrib.auth import get_user_model
+from django.test import TestCase
+from django.urls import reverse
+
+from .models import Label
 
 User = get_user_model()
+
 
 class LabelTest(TestCase):
 
@@ -28,7 +30,6 @@ class LabelTest(TestCase):
         self.label.refresh_from_db()
         self.assertEqual(self.label.name, "New Name")
         self.assertEqual(response.status_code, 302)
-
 
     def test_delete_label(self):
         response = self.client.post(reverse("label_delete", kwargs={'pk': self.label.pk}))

@@ -1,12 +1,12 @@
 from django.contrib import messages
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from task_manager.labels.models import Label
-from task_manager.labels.forms import LabelCreationForm, LabelChangeForm
-from django.utils.translation import gettext_lazy as _
-from django.urls import reverse_lazy
-from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-from task_manager.tasks.models import Task
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+
+from task_manager.labels.forms import LabelForm
+from task_manager.labels.models import Label
 
 
 class IndexView(LoginRequiredMixin, ListView):
@@ -16,7 +16,7 @@ class IndexView(LoginRequiredMixin, ListView):
 
 
 class LabelCreateView(LoginRequiredMixin, CreateView):
-    form_class = LabelCreationForm
+    form_class = LabelForm
     template_name = 'labels/create.html'
     success_url = reverse_lazy('labels_index')
 
@@ -32,7 +32,7 @@ class LabelCreateView(LoginRequiredMixin, CreateView):
 
 class LabelUpdateView(LoginRequiredMixin, UpdateView):
     model = Label
-    form_class = LabelChangeForm
+    form_class = LabelForm
     template_name = 'labels/create.html'
     success_url = reverse_lazy('labels_index')
 

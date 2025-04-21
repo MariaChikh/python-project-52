@@ -1,9 +1,9 @@
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
-from django.contrib.auth import get_user_model
-
 
 User = get_user_model()
+
 
 class UserTest(TestCase):
     fixtures = ["users.json"]
@@ -33,7 +33,6 @@ class UserTest(TestCase):
         user.refresh_from_db()
         self.assertEqual(user.first_name, "TestName")
         self.assertEqual(response.status_code, 302)
-
 
     def test_delete_user(self):
         user = User.objects.get(pk=2)
