@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import CreateView, DeleteView, UpdateView
+from django.views.generic import CreateView, DeleteView, UpdateView, DetailView
 from django_filters.views import FilterView
 
 from task_manager.tasks.forms import TaskForm
@@ -68,3 +68,9 @@ class TaskDeleteView(LoginRequiredMixin, DeleteView):
             return redirect('tasks_index')
         messages.success(self.request, _('Task successfully deleted'))
         return super().dispatch(request, *args, **kwargs)
+    
+
+class TaskDetailView(DetailView):
+    model = Task
+    template_name = 'tasks/task_detail.html'
+    context_object_name = 'task'
