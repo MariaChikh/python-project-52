@@ -11,18 +11,26 @@ from django.utils.translation import gettext_lazy as _
 class CustomUserCreationForm(UserCreationForm):
     password1 = forms.CharField(
         label=_("Password"),
-        widget=forms.PasswordInput(attrs={'label': _('Password'), 'placeholder': _('Password'), 'class': 'form-control'}),
+        widget=forms.PasswordInput(attrs={'label': _('Password'), 
+                                          'placeholder': _('Password'), 
+                                          'class': 'form-control'}),
         help_text=_("Your password must contain at least 3 characters."),
     )
 
     password2 = forms.CharField(
         label=_("Password confirmation"),
-        widget=forms.PasswordInput(attrs={'label': _('Confirm Password'), 'placeholder': _('Confirm password'), 'class': 'form-control'}),
+        widget=forms.PasswordInput(attrs={'label': _('Confirm Password'), 
+                                          'placeholder': _('Confirm password'), 
+                                          'class': 'form-control'}),
         help_text=_("Please enter the password again to confirm."),
     )
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'username', 'password1', 'password2')
+        fields = ('first_name', 
+                  'last_name', 
+                  'username', 
+                  'password1', 
+                  'password2')
 
         labels = {
             'first_name': _('First Name'),
@@ -32,7 +40,8 @@ class CustomUserCreationForm(UserCreationForm):
 
         help_texts = {
             'username': _(
-                'Required field. No more than 150 characters. Only letters, numbers and symbols @/./+/-/_.'
+                '''Required field. No more than 150 characters. 
+                Only letters, numbers and symbols @/./+/-/_.'''
             ),
         }
         widgets = {
@@ -53,7 +62,8 @@ class CustomUserCreationForm(UserCreationForm):
     def clean_password1(self):
         password1 = self.cleaned_data.get("password1")
         if password1 and len(password1) < 3:
-            raise forms.ValidationError(_("Your password must contain at least 3 characters."))
+            raise forms.ValidationError(_('''Your password must contain
+                                        at least 3 characters.'''))
         return password1
     
     def clean(self):

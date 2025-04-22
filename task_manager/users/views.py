@@ -28,7 +28,7 @@ class UserCreateView(CreateView):
         return context
     
     def form_valid(self, form):
-        messages.success(self.request, "Пользователь успешно зарегистрирован")
+        messages.success(self.request, _("User successfully registrated"))
         return super().form_valid(form)
     
 
@@ -46,7 +46,8 @@ class UserUpdateView(UpdateView):
     def dispatch(self, request, *args, **kwargs):
         obj = self.get_object()
         if obj != request.user:
-            messages.error(request, _("You do not have permission to modify another user."))
+            messages.error(request, _('''You do not have permission
+                                      to modify another user.'''))
             return redirect('users_index')
         return super().dispatch(request, *args, **kwargs)
     
@@ -64,10 +65,12 @@ class UserDeleteView(DeleteView):
     def form_valid(self, form):
         obj = self.get_object()
         if obj != self.request.user:
-            messages.error(self.request, _("You do not have permission to delete another user."))
+            messages.error(self.request, _('''You do not have permission 
+                                           to delete another user.'''))
             return redirect('users_index')
         if obj.tasks_created.exists():
-            messages.error(self.request, _('Cannot delete user because it is in use'))
+            messages.error(self.request, _('''Cannot delete user 
+                                           because it is in use'''))
             return redirect(self.success_url)
         messages.success(self.request, _('User successfully deleted'))
         return super().form_valid(form)

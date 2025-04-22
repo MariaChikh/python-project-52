@@ -33,13 +33,14 @@ class TaskTest(TestCase):
 
     def test_update_task(self):
         task = Task.objects.first()
-        response = self.client.post(reverse('task_update', kwargs={'pk': task.pk}), {
-            'name': 'Updated Task',
-            'description': 'Updated description',
-            'status': self.status.pk,
-            'executor': self.user.pk,
-            'labels': [self.label.pk],
-        })
+        response = self.client.post(reverse('task_update', 
+                                            kwargs={'pk': task.pk}), {
+                                                'name': 'Updated Task',
+                                                'description': 'Description',
+                                                 'status': self.status.pk,
+                                                'executor': self.user.pk,
+                                                'labels': [self.label.pk],
+                                                })
 
         self.assertEqual(response.status_code, 302)
         task.refresh_from_db()
@@ -47,6 +48,8 @@ class TaskTest(TestCase):
 
     def test_delete_task(self):
         task = Task.objects.first()
-        response = self.client.post(reverse('task_delete', kwargs={'pk': task.pk}))
+        response = self.client.post(reverse('task_delete', 
+                                            kwargs={'pk': task.pk}
+                                            ))
         self.assertEqual(response.status_code, 302)
         self.assertFalse(Task.objects.filter(pk=task.pk).exists())

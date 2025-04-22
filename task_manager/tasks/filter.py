@@ -22,7 +22,9 @@ class TaskFilter(django_filters.FilterSet):
     labels = django_filters.ModelMultipleChoiceFilter(
         queryset=Label.objects.all(),
         label='Метки',
-        widget=forms.CheckboxSelectMultiple(attrs={'class': 'form-check', 'size': '4'})
+        widget=forms.CheckboxSelectMultiple(attrs={
+            'class': 'form-check', 
+            'size': '4'})
     )
     user_tasks = django_filters.BooleanFilter(
         method='user_tasks_filter',

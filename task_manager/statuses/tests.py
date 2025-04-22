@@ -24,7 +24,8 @@ class StatusTest(TestCase):
         self.assertTrue(Status.objects.filter(name='Working').exists())
 
     def test_update_status(self):
-        response = self.client.post(reverse('status_update', kwargs={'pk': self.status.pk}),
+        response = self.client.post(reverse('status_update',
+                                            kwargs={'pk': self.status.pk}),
                                             {'name': 'New Name',
                                             })
         self.status.refresh_from_db()
@@ -32,6 +33,8 @@ class StatusTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
     def test_delete_status(self):
-        response = self.client.post(reverse("status_delete", kwargs={'pk': self.status.pk}))
+        response = self.client.post(reverse("status_delete", 
+                                            kwargs={'pk': self.status.pk,
+                                                    }))
         self.assertFalse(Status.objects.filter(pk=self.status.pk).exists())
         self.assertEqual(response.status_code, 302)

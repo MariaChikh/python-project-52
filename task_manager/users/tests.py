@@ -25,7 +25,8 @@ class UserTest(TestCase):
 
     def test_update_user(self):
         user = User.objects.get(pk=2)
-        response = self.client.post(reverse('user_update', kwargs={'pk': self.user.pk}),
+        response = self.client.post(reverse('user_update', 
+                                            kwargs={'pk': self.user.pk}),
                                             {'first_name': 'TestName',
                                              'last_name': user.last_name,
                                              'username': user.username,
@@ -36,6 +37,8 @@ class UserTest(TestCase):
 
     def test_delete_user(self):
         user = User.objects.get(pk=2)
-        response = self.client.post(reverse("user_delete", kwargs={'pk': user.pk}))
+        response = self.client.post(reverse("user_delete", 
+                                            kwargs={'pk': user.pk,
+                                                    }))
         self.assertFalse(User.objects.filter(pk=2).exists())
         self.assertEqual(response.status_code, 302)
