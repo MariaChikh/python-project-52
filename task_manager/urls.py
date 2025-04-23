@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from .views import CustomLoginView, CustomLogoutView, IndexView
+from .views import CustomLoginView, CustomLogoutView, IndexView, test_error
 
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
@@ -28,4 +28,5 @@ urlpatterns = [
     path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', CustomLogoutView.as_view(), name='logout'),
     path('admin/', admin.site.urls),
+    path('test_error/', test_error, name='test_error'),
 ]

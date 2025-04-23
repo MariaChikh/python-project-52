@@ -55,8 +55,8 @@ class StatusDeleteView(LoginRequiredMixin, DeleteView):
     def form_valid(self, form):
         status = self.get_object()
         if status.task_set.exists():
-            messages.error(self.request, _('''Cannot delete status 
-                                           because it is in use'''))
+            messages.error(self.request, 
+                           _('Cannot delete status because it is in use'))
             return redirect(self.success_url)
         messages.success(self.request, _('Status successfully deleted'))
         return super().form_valid(form)

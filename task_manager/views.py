@@ -35,7 +35,7 @@ class CustomLogoutView(LogoutView):
         return super().dispatch(request, *args, **kwargs)
     
 
-def test_rollbar(request):
+def test_error(request):
     try:
         1 / 0
     except Exception:

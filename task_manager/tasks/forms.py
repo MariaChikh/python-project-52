@@ -25,10 +25,12 @@ class TaskForm(forms.ModelForm):
             'name': forms.TextInput(attrs={
                 'placeholder': _('Name'),
                 'class': 'form-control',
+                'required': False,
             }),
             'description': forms.Textarea(attrs={
                 'placeholder': _('Description'),
                 'class': 'form-control',
+                'required': False,
             }),
             'status': forms.Select(attrs={
                 'class': 'form-control',

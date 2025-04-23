@@ -12,7 +12,7 @@ class Task(models.Model):
                                on_delete=models.CASCADE, 
                                related_name='tasks_created')
     executor = models.ForeignKey(User, 
-                                 on_delete=models.SET_NULL, 
+                                 on_delete=models.PROTECT, 
                                  null=True, blank=True, 
                                  related_name='tasks_assigned')
     labels = models.ManyToManyField('labels.Label')
