@@ -355,10 +355,8 @@ msgstr ""
 "+/-/_."
 
 #: task_manager/users/forms.py:53
-#, fuzzy
-#| msgid "Full name"
 msgid "First name"
-msgstr "Полное имя"
+msgstr "Имя"
 
 #: task_manager/users/forms.py:57
 msgid "Last name"
