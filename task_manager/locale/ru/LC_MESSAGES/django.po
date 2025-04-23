@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-23 20:24+0300\n"
+"POT-Creation-Date: 2025-04-23 22:58+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,7 +61,7 @@ msgstr "Невозможно удалить статус, потому что о
 msgid "Status successfully deleted"
 msgstr "Статус успешно удален"
 
-#: task_manager/tasks/forms.py:18 task_manager/tasks/forms.py:30
+#: task_manager/tasks/forms.py:18 task_manager/tasks/forms.py:31
 msgid "Description"
 msgstr "Описание"
 
@@ -107,8 +107,9 @@ msgstr "Менеджер задач"
 msgid "Users"
 msgstr "Пользователи"
 
-#: task_manager/templates/base.html:31
-msgid "Log in"
+#: task_manager/templates/base.html:31 task_manager/templates/login.html:7
+#: task_manager/templates/login.html:11
+msgid "Login"
 msgstr "Вход"
 
 #: task_manager/templates/base.html:34
@@ -158,16 +159,16 @@ msgstr "Изменение метки"
 msgid "Create Label"
 msgstr "Создать метку"
 
-#: task_manager/templates/labels/create.html:24
-#: task_manager/templates/statuses/create.html:24
-#: task_manager/templates/tasks/create.html:24
-#: task_manager/templates/users/create.html:27
+#: task_manager/templates/labels/create.html:19
+#: task_manager/templates/statuses/create.html:19
+#: task_manager/templates/tasks/create.html:28
+#: task_manager/templates/users/create.html:22
 msgid "Change"
 msgstr "Изменить"
 
-#: task_manager/templates/labels/create.html:24
-#: task_manager/templates/statuses/create.html:24
-#: task_manager/templates/tasks/create.html:24
+#: task_manager/templates/labels/create.html:19
+#: task_manager/templates/statuses/create.html:19
+#: task_manager/templates/tasks/create.html:28
 msgid "Create"
 msgstr "Создать"
 
@@ -211,10 +212,6 @@ msgstr "Изменить"
 #: task_manager/templates/users/index.html:28
 msgid "Delete"
 msgstr "Удалить"
-
-#: task_manager/templates/login.html:7 task_manager/templates/login.html:11
-msgid "Login"
-msgstr "Вход"
 
 #: task_manager/templates/statuses/create.html:7
 msgid "Change Status"
@@ -285,7 +282,7 @@ msgstr "Изменение пользователя"
 msgid "Registration"
 msgstr "Регистрация"
 
-#: task_manager/templates/users/create.html:27
+#: task_manager/templates/users/create.html:22
 msgid "Register"
 msgstr "Зарегистрировать"
 
