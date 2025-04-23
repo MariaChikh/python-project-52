@@ -7,7 +7,17 @@
     <h1 class="my-4">{% translate "Login" %}</h1>
     <form method="post">
       {% csrf_token %}
-      {{ form.as_p }}
+      
+      <div class="mb-3">
+        <label for="id_username" class="form-label">{% translate "Username" %}</label>
+        <input type="text" name="username" id="id_username" class="form-control" placeholder="{% translate 'Username' %}" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="id_password" class="form-label">{% translate "Password" %}</label>
+        <input type="password" name="password" id="id_password" class="form-control" placeholder="{% translate 'Password' %}" required>
+      </div>
+
       <button type="submit" class="btn btn-primary">{% translate "Login" %}</button>
     </form>
   </div>
