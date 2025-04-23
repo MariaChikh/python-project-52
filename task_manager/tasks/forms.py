@@ -9,6 +9,13 @@ from .models import Task
 
 
 class TaskForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['status'].queryset = Status.objects.all()
+        self.fields['executor'].queryset = User.objects.all()
+        self.fields['labels'].queryset = Label.objects.all()
+
     class Meta:
         model = Task
         fields = ['name', 'description', 'status', 'executor', 'labels',]
@@ -43,9 +50,3 @@ class TaskForm(forms.ModelForm):
                 'size': '4',
             }),
         }
-
-        def __init__(self, *args, **kwargs):
-            super().__init__(*args, **kwargs)
-            self.fields['status'].queryset = Status.objects.all()
-            self.fields['executor'].queryset = User.objects.all()
-            self.fields['labels'].queryset = Label.objects.all()
