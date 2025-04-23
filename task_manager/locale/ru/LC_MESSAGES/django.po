@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-23 22:58+0300\n"
+"POT-Creation-Date: 2025-04-23 23:14+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -108,7 +108,6 @@ msgid "Users"
 msgstr "Пользователи"
 
 #: task_manager/templates/base.html:31 task_manager/templates/login.html:7
-#: task_manager/templates/login.html:11
 msgid "Login"
 msgstr "Вход"
 
@@ -213,6 +212,22 @@ msgstr "Изменить"
 msgid "Delete"
 msgstr "Удалить"
 
+#: task_manager/templates/login.html:12 task_manager/templates/login.html:13
+#: task_manager/templates/users/index.html:12 task_manager/users/forms.py:49
+#: task_manager/users/forms.py:90 task_manager/users/forms.py:103
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: task_manager/templates/login.html:17 task_manager/templates/login.html:18
+#: task_manager/users/forms.py:13 task_manager/users/forms.py:14
+#: task_manager/users/forms.py:15
+msgid "Password"
+msgstr "Пароль"
+
+#: task_manager/templates/login.html:21
+msgid "Log in"
+msgstr "Войти"
+
 #: task_manager/templates/statuses/create.html:7
 msgid "Change Status"
 msgstr "Изменение статуса"
@@ -292,19 +307,9 @@ msgstr "Зарегистрировать"
 msgid "Delete User"
 msgstr "Удаление пользователя"
 
-#: task_manager/templates/users/index.html:12 task_manager/users/forms.py:49
-#: task_manager/users/forms.py:90 task_manager/users/forms.py:103
-msgid "Username"
-msgstr "Имя пользователя"
-
 #: task_manager/templates/users/index.html:13
 msgid "Full name"
 msgstr "Полное имя"
-
-#: task_manager/users/forms.py:13 task_manager/users/forms.py:14
-#: task_manager/users/forms.py:15
-msgid "Password"
-msgstr "Пароль"
 
 #: task_manager/users/forms.py:17
 msgid "Your password must contain at least 3 characters."
