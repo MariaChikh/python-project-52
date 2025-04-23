@@ -33,12 +33,3 @@ class CustomLogoutView(LogoutView):
     def dispatch(self, request, *args, **kwargs):
         messages.info(request, _('You are logged out'))
         return super().dispatch(request, *args, **kwargs)
-    
-
-def test_error(request):
-    try:
-        1 / 0
-    except Exception:
-        rollbar.report_exc_info()  
-
-    return HttpResponse("Test Rollbar Error")
