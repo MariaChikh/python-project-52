@@ -8,7 +8,7 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
 
-class CustomUserCreationForm(UserCreationForm):
+class CustomUserForm(UserCreationForm):
     password1 = forms.CharField(
         label=_("Password"),
         widget=forms.PasswordInput(attrs={'label': _('Password'), 
@@ -77,30 +77,3 @@ class CustomUserCreationForm(UserCreationForm):
     def _post_clean(self):
         super(forms.ModelForm, self)._post_clean() 
     
-
-class CustomUserChangeForm(UserChangeForm):
-    password = None 
-    class Meta:
-        model = User
-        fields = ['first_name', 'last_name', 'username']
-
-        labels = {
-            'first_name': _('First Name'),
-            'last_name': _('Last Name'),
-            'username': _('Username'),
-        }
-
-        widgets = {
-            'first_name': forms.TextInput(attrs={
-                'placeholder': _('Name'),
-                'class': 'form-control',
-            }),
-            'last_name': forms.TextInput(attrs={
-                'placeholder': _('Last Name'),
-                'class': 'form-control'
-            }),
-            'username': forms.TextInput(attrs={
-                'placeholder': _('Username'),
-                'class': 'form-control'
-            }),
-        }

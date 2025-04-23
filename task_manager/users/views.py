@@ -5,10 +5,7 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
-from task_manager.users.forms import (
-    CustomUserChangeForm,
-    CustomUserCreationForm,
-)
+from task_manager.users.forms import CustomUserForm
 
 
 class IndexView(ListView):
@@ -18,9 +15,9 @@ class IndexView(ListView):
 
 
 class UserCreateView(CreateView):
-    form_class = CustomUserCreationForm
+    form_class = CustomUserForm
     template_name = 'users/create.html'
-    success_url = reverse_lazy('users_index')
+    success_url = reverse_lazy('login')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -34,7 +31,7 @@ class UserCreateView(CreateView):
 
 class UserUpdateView(UpdateView):
     model = User
-    form_class = CustomUserChangeForm
+    form_class = CustomUserForm
     template_name = 'users/create.html'
     success_url = reverse_lazy('users_index')
 
