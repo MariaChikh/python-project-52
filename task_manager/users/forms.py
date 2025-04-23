@@ -35,7 +35,7 @@ class CustomUserCreationForm(UserCreationForm):
         labels = {
             'first_name': _('First Name'),
             'last_name': _('Last Name'),
-            'username': _('User name'),
+            'username': _('Username'),
         }
 
         help_texts = {
