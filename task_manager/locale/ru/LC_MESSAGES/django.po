@@ -246,7 +246,7 @@ msgstr "Удаление статуса"
 
 #: task_manager/templates/tasks/create.html:7
 msgid "Change Task"
-msgstr "Изменение статуса"
+msgstr "Изменение задачи"
 
 #: task_manager/templates/tasks/create.html:7
 #: task_manager/templates/tasks/index.html:11

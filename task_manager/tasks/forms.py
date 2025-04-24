@@ -44,6 +44,7 @@ class TaskForm(forms.ModelForm):
             }),
             'executor': forms.Select(attrs={
                 'class': 'form-control',
+                'required': False,
             }),
             'labels': forms.CheckboxSelectMultiple(attrs={
                 'class': 'form-check',

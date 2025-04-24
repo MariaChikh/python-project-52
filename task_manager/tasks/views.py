@@ -20,6 +20,7 @@ class IndexView(LoginRequiredMixin, FilterView):
 
 
 class TaskCreateView(LoginRequiredMixin, CreateView):
+    model = Task
     form_class = TaskForm
     template_name = 'tasks/create.html'
     success_url = reverse_lazy('tasks_index')
