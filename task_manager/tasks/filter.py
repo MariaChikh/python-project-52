@@ -12,7 +12,7 @@ from .models import Task
 class TaskFilter(django_filters.FilterSet):
     status = django_filters.ModelChoiceFilter(
         queryset=Status.objects.all(),
-        label= _('Status'),
+        label=_('Status'),
         widget=forms.Select(attrs={'class': 'form-select'})
     )
     executor = django_filters.ModelChoiceFilter(

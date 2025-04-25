@@ -47,7 +47,6 @@ class TaskUpdateView(LoginRequiredMixin, UpdateView):
         context['is_update'] = True
         return context
 
-
     def form_valid(self, form):
         messages.success(self.request, _("Task successfully updated"))
         return super().form_valid(form)

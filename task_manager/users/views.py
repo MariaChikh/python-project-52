@@ -59,12 +59,16 @@ class UserDeleteView(DeleteView):
     success_url = reverse_lazy('users_index')
     context_object_name = 'user'
 
+    def dispatch(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if obj != request.user:
+            messages.error(request, _('''You do not have permission 
+                                      to delete another user.'''))
+            return redirect('users_index')
+        return super().dispatch(request, *args, **kwargs)
+    
     def form_valid(self, form):
         obj = self.get_object()
-        if obj != self.request.user:
-            messages.error(self.request, _('''You do not have permission 
-                                           to delete another user.'''))
-            return redirect('users_index')
         if obj.tasks_created.exists():
             messages.error(self.request, _('''Cannot delete user 
                                            because it is in use'''))
