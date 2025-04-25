@@ -26,12 +26,10 @@ class TaskFilter(django_filters.FilterSet):
         self.form.fields["executor"].label_from_instance = lambda obj: \
             f"{obj.first_name} {obj.last_name}"
         
-    labels = django_filters.ModelMultipleChoiceFilter(
+    labels = django_filters.ModelChoiceFilter(
         queryset=Label.objects.all(),
         label=_('Labels'),
-        widget=forms.CheckboxSelectMultiple(attrs={
-            'class': 'form-check', 
-            'size': '4'})
+        widget=forms.Select(attrs={'class': 'form-select'}),
     )
     user_tasks = django_filters.BooleanFilter(
         method='user_tasks_filter',
