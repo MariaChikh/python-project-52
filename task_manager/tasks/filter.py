@@ -39,4 +39,4 @@ class TaskFilter(django_filters.FilterSet):
     def user_tasks_filter(self, queryset, name, value):
         if value:
             return queryset.filter(author=self.request.user)
-        return queryset
+        return queryset.all()

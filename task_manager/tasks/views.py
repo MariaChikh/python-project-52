@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import CreateView, DeleteView, DetailView, UpdateView
 from django_filters.views import FilterView
+from django.shortcuts import get_object_or_404
 
 from task_manager.tasks.forms import TaskForm
 from task_manager.tasks.models import Task
@@ -46,7 +47,8 @@ class TaskUpdateView(LoginRequiredMixin, UpdateView):
         context = super().get_context_data(**kwargs)
         context['is_update'] = True
         return context
-    
+
+
     def form_valid(self, form):
         messages.success(self.request, _("Task successfully updated"))
         return super().form_valid(form)
@@ -59,8 +61,7 @@ class TaskDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('tasks_index')
     
     def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.filter(author=self.request.user)
+        return Task.objects.filter(author=self.request.user)
 
     def dispatch(self, request, *args, **kwargs):
         task = self.get_object()
@@ -72,7 +73,7 @@ class TaskDeleteView(LoginRequiredMixin, DeleteView):
         return super().dispatch(request, *args, **kwargs)
     
 
-class TaskDetailView(DetailView):
+class TaskDetailView(LoginRequiredMixin, DetailView):
     model = Task
     template_name = 'tasks/task_detail.html'
     context_object_name = 'task'
