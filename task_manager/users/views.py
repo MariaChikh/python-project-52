@@ -60,16 +60,16 @@ class UserDeleteView(DeleteView):
     context_object_name = 'user'
 
     def dispatch(self, request, *args, **kwargs):
-        obj = self.get_object()
-        if obj != request.user:
+        user = self.get_object()
+        if user != request.user:
             messages.error(request, _('''You do not have permission 
                                       to modify another user.'''))
             return redirect('users_index')
         return super().dispatch(request, *args, **kwargs)
     
     def form_valid(self, form):
-        obj = self.get_object()
-        if obj.tasks_created.exists():
+        user = self.get_object()
+        if user.tasks_created.exists():
             messages.error(self.request, _('''Cannot delete user 
                                            because it is in use'''))
             return redirect(self.success_url)

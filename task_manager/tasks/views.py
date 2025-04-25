@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import CreateView, DeleteView, DetailView, UpdateView
 from django_filters.views import FilterView
+from django.shortcuts import get_object_or_404
 
 from task_manager.tasks.forms import TaskForm
 from task_manager.tasks.models import Task
@@ -57,18 +58,17 @@ class TaskDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'tasks/delete.html'
     context_object_name = 'task'
     success_url = reverse_lazy('tasks_index')
-    
-    def get_queryset(self):
-        return Task.objects.filter(author=self.request.user)
 
     def dispatch(self, request, *args, **kwargs):
         task = self.get_object()
         if task.author != request.user:
-            messages.error(request, 
-                           _('A task can only be deleted by its author.'))
+            messages.error(request, _('A task can only be deleted by its author.'))
             return redirect('tasks_index')
         messages.success(self.request, _('Task successfully deleted'))
         return super().dispatch(request, *args, **kwargs)
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(Task, pk=self.kwargs['pk'])
     
 
 class TaskDetailView(LoginRequiredMixin, DetailView):
