@@ -63,7 +63,7 @@ class UserDeleteView(DeleteView):
         obj = self.get_object()
         if obj != request.user:
             messages.error(request, _('''You do not have permission 
-                                      to delete another user.'''))
+                                      to modify another user.'''))
             return redirect('users_index')
         return super().dispatch(request, *args, **kwargs)
     
