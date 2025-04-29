@@ -17,14 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from django.core.management import call_command
-from django.http import HttpResponse
-
 from .views import CustomLoginView, CustomLogoutView, IndexView
-
-def migrate_view(request):
-    call_command('migrate')
-    return HttpResponse("Migrations applied.")
 
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
@@ -35,5 +28,4 @@ urlpatterns = [
     path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', CustomLogoutView.as_view(), name='logout'),
     path('admin/', admin.site.urls),
-    path('run-migrations/', migrate_view),
 ]
